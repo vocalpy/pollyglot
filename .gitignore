@@ -3,3 +3,4 @@
 __pycache__/
 data/wav-textgrid/*.WAV
 data/wav-textgrid/*.TextGrid
+*egg-info
