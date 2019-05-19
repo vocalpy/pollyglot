@@ -1,3 +1,12 @@
+# each key becomes a folder in 'results' that will then be compressed into a tarball
+# and uploaded to the Figshare repository.
+# Where possible the format of the key should be:
+# "{audio file extension}-{vocal annotation format name}"
+# where the file extension is the same as the one found in the source repository,
+# e.g., .wav files, and the annotation format name, e.g. 'textgrid',
+# is ideally one recognized by crowsetta (https://github.com/NickleDave/crowsetta)
+# (since these datasets are used to test that library)
+
 cbin-notmat:
   repository_url: https://figshare.com/articles/Bengalese_Finch_song_repository/4805749
   license: "CC BY 4.0"
