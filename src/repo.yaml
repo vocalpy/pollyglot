@@ -1,0 +1,18 @@
+cbin-notmat:
+  repository_url: https://figshare.com/articles/Bengalese_Finch_song_repository/4805749
+  license: "CC BY 4.0"
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  data_url: https://ndownloader.figshare.com/files/9537229
+
+wav-koumura:
+  repository_url: https://figshare.com/articles/BirdsongRecognition/3470165
+  license: "CC BY 4.0"
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  data_url: https://ndownloader.figshare.com/files/5463221
+
+wav-textgrid:
+  repository_url: https://figshare.com/articles/Data_used_in_PLoS_One_article_Complexity_Predictability_and_Time_Homogeneity_of_Syntax_in_the_Songs_of_Cassin_s_Vireo_Vireo_cassini_by_Hedley_2016_/3081814
+  license: "CC BY 4.0"
+  license_url: https://creativecommons.org/licenses/by/4.0/
+  audio_url: https://ndownloader.figshare.com/files/4789567
+  annot_url: https://ndownloader.figshare.com/files/4793170
