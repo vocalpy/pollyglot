@@ -27,7 +27,7 @@ VERSION = '0.1.0'
 LICENSE = 'BSD'
 
 REQUIRED = [
-    'snakemake',
+    'pyyaml',
 ]
 
 # The rest you shouldn't have to touch too much :)
