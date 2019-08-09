@@ -81,8 +81,7 @@ def get_argparser():
     parser.add_argument('command', type=str, metavar='command',
                         choices=CHOICES,
                         help="Command to run, valid options are:\n"
-                             f"{CHOICES}\n"
-                             "$ vak train ./configs/config_2018-12-17.ini")
+                             f"{CHOICES}\n")
     return parser
 
 
