@@ -17,7 +17,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = 'vocal-annotation-formats'
+NAME = 'pollyglot'
 DESCRIPTION = 'Small example datasets for different formats of annotating vocalizations'
 URL = 'https://github.com/NickleDave/vocal-annotation-formats'
 EMAIL = 'nicholdav@gmail.com'
@@ -105,6 +105,9 @@ setup(
     url=URL,
     packages=find_packages(where="src"),
     package_dir={"": "src"},
+    entry_points={
+        'console_scripts': ['pollymake=pollyglot.make:main'],
+    },
     install_requires=REQUIRED,
     license=LICENSE,
     classifiers=[

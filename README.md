@@ -1,4 +1,4 @@
-# vocal-annotation-formats
+# pollyglot
 Small example datasets for different formats of annotating vocalizations.
 
 The [Makefile](./Makefile) creates an archive from each subdirectory 
