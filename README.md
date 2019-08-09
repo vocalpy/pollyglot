@@ -1,7 +1,27 @@
 # pollyglot
-Small example datasets for different formats of annotating vocalizations.
+Small example datasets of annotated vocalizations.
 
-The [Makefile](./Makefile) creates an archive from each subdirectory 
+Useful if you have:
+- need some example vocalizations that are quick to download
+- build a tool that works with different annotation formats
+  and you want to test that tool
+
+## usage
+There are two components to `pollyglot`:
+1. command-line tool that creates the small example datasets from
+   larger publicly-available datasets
+2. package that fetches the small example datasets, which can be
+   a dependency for your library
+
+To use (1), you invoke the command-line tool `pollymake`
+
+Cloning this repository, installing it for development (see below), and then calling
+```
+$ pollymake all
+```
+will re-make the dataset within the repository.
+
+The [Makefile](./Makefile) creates an archive from each subdirectory
 in [data](./data). These are then uploaded to a Figshare dataset repository:  
 <https://figshare.com/articles/Vocalization_Annotation_Formats_Dataset/8046920>
 
