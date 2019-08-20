@@ -3,9 +3,13 @@ import argparse
 from pathlib import Path
 import shutil
 import tarfile
-import urllib.request
+import zipfile
 
+import rarfile
 import yaml
+
+from .urlcopy import urlcopy
+
 
 HERE = Path(__file__).parent
 REPO_YAML = HERE.joinpath('../../data/repo.yaml')
@@ -20,14 +24,18 @@ TARGZBALLS_DIR = HERE.joinpath('../../results/targzballs')
 
 
 def clean():
-    downloads_dir_dirs = DOWNLOADS_DIR.glob('/*/')
-    shutil.rmtree(downloads_dir_dirs)
+    downloads_dir_dirs = [d for d in DOWNLOADS_DIR.iterdir() if d.is_dir()]
+    if downloads_dir_dirs:
+        for downloads_dir in downloads_dir_dirs:
+            shutil.rmtree(downloads_dir)
 
-    targzballs_dir_dirs = TARGZBALLS_DIR.glob('/*/')
-    shutil.rmtree(targzballs_dir_dirs)
+    targzballs_dir_dirs = [d for d in TARGZBALLS_DIR.iterdir() if d.is_dir()]
+    if targzballs_dir_dirs:
+        for targzballs_dir in targzballs_dir_dirs:
+            shutil.rmtree(targzballs_dir)
 
 
-def make_download_dirs():
+def makedirs_downloads():
     for repo_key in repo_keys:
         download_dir = DOWNLOADS_DIR / f"{repo_key}"
         download_dir.mkdir()
@@ -35,14 +43,37 @@ def make_download_dirs():
 
 def download():
     for repo_key, repo_url_dict in repo_dict.items():
+        print(
+            f'downloading data for {repo_key}'
+        )
         local_repo_path = DOWNLOADS_DIR.joinpath(repo_key)
+        prefixes = []
+
         if 'data_url' in repo_url_dict:
-            data_url = repo_url_dict['data_url']
-            local_filename, headers = urllib.request.urlretrieve(
-                url=data_url, filename=local_repo_path
+            prefixes.append('data')
+        elif 'audio_url' in repo_url_dict and 'annot_url' in repo_url_dict:
+            prefixes.append('audio')
+            prefixes.append('annot')
+
+        for prefix in prefixes:
+            url = repo_url_dict[f'{prefix}_url']
+            filename = repo_url_dict[f'{prefix}_filename']
+            dst = local_repo_path.joinpath(filename)
+            urlcopy(url, dst=str(dst))
+
+            print(
+                f'extracting data for {repo_key}'
             )
-        tar = tarfile.open(local_filename)
-        tar.extractall()
+
+            if dst.suffixes[-2:] == ['.tar', '.gz']:
+                tar = tarfile.open(str(dst))
+                tar.extractall(str(local_repo_path))
+            elif dst.suffixes[-1:] == ['.zip']:
+                with zipfile.ZipFile(str(dst), 'r') as zip_ref:
+                    zip_ref.extractall(local_repo_path)
+            elif dst.suffixes[-1:] == ['.rar']:
+                with rarfile.RarFile(str(dst), 'r') as rar_ref:
+                    rar_ref.extractall(local_repo_path)
 
 
 def targzball():
@@ -51,7 +82,7 @@ def targzball():
 
 
 def all():
-    make_download_dirs()
+    makedirs_downloads()
     download()
     targzball()
 
@@ -65,6 +96,16 @@ def make(command):
         clean()
     elif command == 'all':
         all()
+    elif command == 'makedirs_downloads':
+        makedirs_downloads()
+    elif command == 'download':
+        download()
+    elif command == 'targzball':
+        targzball()
+    else:
+        raise ValueError(
+            f'unknown command: {command}'
+        )
 
 
 def get_argparser():
@@ -72,7 +113,7 @@ def get_argparser():
     CHOICES = [
         'clean',
         'all',
-        'make_downloads_dirs',
+        'makedirs_downloads',
         'download',
         'targzball',
     ]
