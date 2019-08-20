@@ -6,17 +6,19 @@
 # e.g., .wav files, and the annotation format name, e.g. 'textgrid',
 # is ideally one recognized by crowsetta (https://github.com/NickleDave/crowsetta)
 # (since these datasets are used to test that library)
-
 cbin-notmat:
   repository_url: https://figshare.com/articles/Bengalese_Finch_song_repository/4805749
   license: "CC BY 4.0"
   license_url: https://creativecommons.org/licenses/by/4.0/
+  data_filename: sober.repo1.gy6or6.032212.tar.gz
   data_url: https://ndownloader.figshare.com/files/9537229
+
 
 wav-koumura:
   repository_url: https://figshare.com/articles/BirdsongRecognition/3470165
   license: "CC BY 4.0"
   license_url: https://creativecommons.org/licenses/by/4.0/
+  data_filename: Bird0.zip
   data_url: https://ndownloader.figshare.com/files/5463221
 
 wav-textgrid:
@@ -24,4 +26,6 @@ wav-textgrid:
   license: "CC BY 4.0"
   license_url: https://creativecommons.org/licenses/by/4.0/
   audio_url: https://ndownloader.figshare.com/files/4789567
+  audio_filename: WavFiles1.rar
   annot_url: https://ndownloader.figshare.com/files/4793170
+  annot_filename: Textgrids.zip
