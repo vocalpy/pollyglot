@@ -16,14 +16,27 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = 'pollyglot'
-DESCRIPTION = 'Small example datasets for different formats of annotating vocalizations'
-URL = 'https://github.com/NickleDave/vocal-annotation-formats'
-EMAIL = 'nicholdav@gmail.com'
-AUTHOR = 'David Nicholson'
+# Package meta-data.
+about = {}
+with open("src/pollyglot/__about__.py") as fp:
+    exec(fp.read(), about)
+
+NAME = about['__title__']
+DESCRIPTION = about['__summary__']
+URL = about['__uri__']
+EMAIL = about['__email__']
+AUTHOR = about['__author__']
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.0'
-LICENSE = 'BSD'
+VERSION = about['__version__']
+LICENSE = about['__license__']
+ENTRY_POINTS = {
+    'console_scripts': ['pollymake=pollyglot.make:main'],
+    'pollyglot.tarprep': [
+        'cbin_notmat = pollyglot.tarprep:cbin_notmat',
+        'wav_koumura = pollyglot.tarprep:wav_koumura',
+        'wav_textgrid = pollyglot.tarprep:wav_textgrid',
+    ]
+}
 
 REQUIRED = [
     'pyyaml', 'requests', 'tqdm', 'rarfile',
@@ -104,9 +117,7 @@ setup(
     url=URL,
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    entry_points={
-        'console_scripts': ['pollymake=pollyglot.make:main'],
-    },
+    entry_points=ENTRY_POINTS,
     install_requires=REQUIRED,
     license=LICENSE,
     classifiers=[
