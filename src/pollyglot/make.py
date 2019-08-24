@@ -1,6 +1,8 @@
 """script that generates the Pollyglot data repository"""
 import argparse
+import os
 from pathlib import Path
+import pkg_resources
 import shutil
 import tarfile
 import zipfile
@@ -21,6 +23,13 @@ repo_keys = [k for k in repo_dict.keys()]
 # target paths
 DOWNLOADS_DIR = HERE.joinpath('../../results/downloads')
 TARGZBALLS_DIR = HERE.joinpath('../../results/targzballs')
+
+
+tarprep_funcs = {}
+for tarprep_func in pkg_resources.iter_entry_points(group='pollyglot.tarprep'):
+    tarprep_funcs.update(
+        {tarprep_func.name: tarprep_func.load()}
+    )
 
 
 def clean():
@@ -70,15 +79,28 @@ def download():
                 tar.extractall(str(local_repo_path))
             elif dst.suffixes[-1:] == ['.zip']:
                 with zipfile.ZipFile(str(dst), 'r') as zip_ref:
-                    zip_ref.extractall(local_repo_path)
+                    zip_ref.extractall(str(local_repo_path))
             elif dst.suffixes[-1:] == ['.rar']:
                 with rarfile.RarFile(str(dst), 'r') as rar_ref:
-                    rar_ref.extractall(local_repo_path)
+                    rar_ref.extractall(str(local_repo_path))
+
+
+def make_targz(targz_filename, source_dir, open_as="w:gz"):
+    with tarfile.open(targz_filename, open_as) as tar:
+        tar.add(source_dir, arcname=os.path.basename(source_dir))
 
 
 def targzball():
     for repo_key in repo_keys:
-        results_tar_gz = TARGZBALLS_DIR / f'{repo_key}.tar.gz'
+        func_key = repo_key.replace('-', '_')
+        tarprep_func =tarprep_funcs[func_key]
+
+        data_dir = DOWNLOADS_DIR.joinpath(repo_key)
+        targz_dir = TARGZBALLS_DIR.joinpath(repo_key)
+        tarprep_func(src=data_dir, dst=targz_dir)
+
+        targz = TARGZBALLS_DIR / f'{repo_key}.tar.gz'
+        make_targz(targz_filename=targz, source_dir=targz_dir)
 
 
 def all():
