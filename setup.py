@@ -29,6 +29,8 @@ AUTHOR = about['__author__']
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = about['__version__']
 LICENSE = about['__license__']
+
+PACKAGE_DATA = {'': ['*.yaml', ]}
 ENTRY_POINTS = {
     'console_scripts': ['pollymake=pollyglot.make:main'],
     'pollyglot.tarprep': [
@@ -117,6 +119,7 @@ setup(
     url=URL,
     packages=find_packages(where="src"),
     package_dir={"": "src"},
+    package_data=PACKAGE_DATA,
     entry_points=ENTRY_POINTS,
     install_requires=REQUIRED,
     license=LICENSE,
