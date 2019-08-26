@@ -8,17 +8,11 @@ import tarfile
 import zipfile
 
 import rarfile
-import yaml
 
+from .datasets import dataset_dict, dataset_names
 from .urlcopy import urlcopy
 
-
 HERE = Path(__file__).parent
-REPO_YAML = HERE.joinpath('../../data/repo.yaml')
-with REPO_YAML.open() as f:
-    repo_dict = yaml.safe_load(f)
-
-repo_keys = [k for k in repo_dict.keys()]
 
 # target paths
 DOWNLOADS_DIR = HERE.joinpath('../../results/downloads')
@@ -45,17 +39,17 @@ def clean():
 
 
 def makedirs_downloads():
-    for repo_key in repo_keys:
-        download_dir = DOWNLOADS_DIR / f"{repo_key}"
+    for dataset_name in dataset_names:
+        download_dir = DOWNLOADS_DIR / f"{dataset_name}"
         download_dir.mkdir()
 
 
 def download():
-    for repo_key, repo_url_dict in repo_dict.items():
+    for dataset_name, repo_url_dict in dataset_dict.items():
         print(
-            f'downloading data for {repo_key}'
+            f'downloading data for {dataset_name}'
         )
-        local_repo_path = DOWNLOADS_DIR.joinpath(repo_key)
+        local_repo_path = DOWNLOADS_DIR.joinpath(dataset_name)
         prefixes = []
 
         if 'data_url' in repo_url_dict:
@@ -71,7 +65,7 @@ def download():
             urlcopy(url, dst=str(dst))
 
             print(
-                f'extracting data for {repo_key}'
+                f'extracting data for {dataset_name}'
             )
 
             if dst.suffixes[-2:] == ['.tar', '.gz']:
@@ -91,15 +85,15 @@ def make_targz(targz_filename, source_dir, open_as="w:gz"):
 
 
 def targzball():
-    for repo_key in repo_keys:
-        func_key = repo_key.replace('-', '_')
+    for dataset_name in dataset_names:
+        func_key = dataset_name.replace('-', '_')
         tarprep_func =tarprep_funcs[func_key]
 
-        data_dir = DOWNLOADS_DIR.joinpath(repo_key)
-        targz_dir = TARGZBALLS_DIR.joinpath(repo_key)
+        data_dir = DOWNLOADS_DIR.joinpath(dataset_name)
+        targz_dir = TARGZBALLS_DIR.joinpath(dataset_name)
         tarprep_func(src=data_dir, dst=targz_dir)
 
-        targz = TARGZBALLS_DIR / f'{repo_key}.tar.gz'
+        targz = TARGZBALLS_DIR / f'{dataset_name}.tar.gz'
         make_targz(targz_filename=targz, source_dir=targz_dir)
 
 
