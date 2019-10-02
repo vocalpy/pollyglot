@@ -17,7 +17,7 @@ import tarfile
 from zipfile import ZipFile
 from collections.abc import Iterable
 
-from .datasets import dataset_dict, dataset_names
+from .datasets import dataset_dict
 
 
 def md5sum(fname, block_size=1048576):  # 2 ** 20
