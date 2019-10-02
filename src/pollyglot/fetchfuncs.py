@@ -387,20 +387,6 @@ def _fetch_file(url, file_name, print_destination=True, resume=True,
         raise
 
 
-FORMATS = {
-    'notmat': {
-        'download_url': 'https://ndownloader.figshare.com/files/13993349',
-        'readme': '',
-        'file_name': 'cbin-notmat.tar.gz',
-    },
-    'koumura': {
-        'download_url': 'https://ndownloader.figshare.com/files/13993352',
-        'readme': '',
-        'file_name': 'wav-koumura.tar.gz',
-    }
-}
-
-
 def fetch(dataset_name, dst='.', remove_compressed_file=True):
     """fetches data from repositories
 
