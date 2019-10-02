@@ -21,12 +21,10 @@ $ pollymake all
 ```
 will re-make the dataset within the repository.
 
-The [Makefile](./Makefile) creates an archive from each subdirectory
-in [data](./data). These are then uploaded to a Figshare dataset repository:  
-<https://figshare.com/articles/Vocalization_Annotation_Formats_Dataset/8046920>
+`pollymake` creates an archive from each repository. These are then uploaded to a Figshare dataset repository:
+<https://figshare.com/articles/pollyglot/9929549>
 
-The reason for creating this repository is not to use GitHub as a data 
-store. The goal is to share code that automates the process of creating a data 
+The goal of this package to share code that automates the process of creating a data
 repository on FigShare, and make this source open for collaboration. The 
 formats in this repository can be parsed by the 
 [Crowsetta](<https://github.com/NickleDave/crowsetta>) package. Development and 
@@ -34,7 +32,7 @@ tutorials for `crowsetta` make use of the small, quick-to-download archives of
 each format on Figshare that are generated from the source in this repository.
 
 `crowsetta` provides tools for anyone that wants to write clean code 
-when working with these annotion formats (or their own format)
+when working with these annotation formats (or their own format)
 To learn more, please visit <https://github.com/NickleDave/crowsetta>
 
 ## formats + references
@@ -51,6 +49,13 @@ The .xls file containing links to songs from the Taylor lab birdsong database wa
 created by Tim Sainburg to train generative networks for animal vocalizations: 
 <https://github.com/timsainb/AVGN>; adapted under MIT license.  
 
+### .not.mat
+.not.mat files are output by the evsonganaly GUI created by Evren Tumer in the Brainard lab.
+The audio file format .cbin is output by the Labview program EvTAF.
+
+Another repository of Bengalese finch song annotated in this format is here:
+<https://figshare.com/articles/Bengalese_Finch_song_repository/4805749>
+
 ### BirdsongRecognition
 A specific .xml format for a repository of labeled Bengalese Finch song.
 The repository is here:
@@ -61,13 +66,6 @@ and label vocalizations, as shared in the repository
 and discussed in the paper "Automatic recognition of element classes and boundaries in the birdsong 
 with variable sequences" by Takuya Koumura and Kazuo Okanoya 
 (<http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0159188>).
-
-### .not.mat
-.not.mat files are output by the evsonganaly GUI created by Evren Tumer in the Brainard lab.
-The audio file format .cbin is output by the Labview program EvTAF.
-
-Another repository of Bengalese finch song annotated in this format is here:
-<https://figshare.com/articles/Bengalese_Finch_song_repository/4805749>
 
 ## Project information
 
