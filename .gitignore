@@ -1,7 +1,14 @@
-*.tar.gz
-.idea/
+# dev
+build/
+dist/
+
+# python
 __pycache__/
-data/wav-textgrid/*.WAV
-data/wav-textgrid/*.TextGrid
 *egg-info
+
+# PyCharm
+.idea/
+
+# data
+*.tar.gz
 results/
