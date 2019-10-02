@@ -388,20 +388,20 @@ def _fetch_file(url, file_name, print_destination=True, resume=True,
 
 
 def fetch(dataset_name, dst='.', remove_compressed_file=True):
-    """fetches data from repositories
+    """fetch data from repositories
 
     Parameters
     ----------
     dataset_name : str
         name of dataset, which will be of the form:
         "audio format" + "annotation format", e.g. "wav-textgrid".
-        A small example dataset of audio files with annotations in the
-        will be downloaded.
+        A small example dataset of audio files with annotations in
+        that format will be downloaded.
     dst : str
         Path where downloaded examples should be saved.
     remove_compressed_file : bool
         if True, remove tar.gz files after extracting.
-        Default is True
+        Default is True.
 
     Returns
     -------
