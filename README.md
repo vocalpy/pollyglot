@@ -72,7 +72,7 @@ Another repository of Bengalese finch song annotated in this format is here:
 ## Project information
 
 ### License
-Vocal-annotation-formats-dataset (c) by David Nicholson, 2018-2019.
+Pollyglot (c) by David Nicholson, 2018-2019.
 
 Code is shared under [BSD-3 License](./LICENSE-CODE).
 
