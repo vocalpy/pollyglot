@@ -425,6 +425,7 @@ def fetch(dataset_name, dst='.', remove_compressed_file=True):
             f'could not find destination_path: {dst}'
         )
 
+    # for now just assume all downloads from pollyglot repository are .tar.gz
     file_name = Path(dst).joinpath(dataset_name + '.tar.gz')
     file_name = str(file_name)
 
@@ -433,7 +434,10 @@ def fetch(dataset_name, dst='.', remove_compressed_file=True):
     else:
         md5_hash = None
 
-    # helpers from MNE-Python that do actual downloading
+    # helpers from MNE-Python that do actual downloading.
+    # Note that 'subset_url' is the url that Figshare assigns
+    # the file in the pollyglot repo that contains the subset of data
+    # from the original repo, that was created by pollymake
     _fetch_file(url=dataset_meta['subset_url'],
                 file_name=file_name,
                 hash_=md5_hash)
