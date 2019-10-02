@@ -5,6 +5,7 @@ https://github.com/mne-tools/mne-python/blob/master/mne/utils.py#L1884
 https://github.com/mne-tools/mne-python/blob/master/LICENSE.txt
 """
 from math import log
+from pathlib import Path
 import sys
 import os
 import time
@@ -424,16 +425,16 @@ def fetch(dataset_name, dst='.', remove_compressed_file=True):
             f'could not find destination_path: {dst}'
         )
 
-    file_name = dataset_dict['file_name']
-    file_name = os.path.join(dst, file_name)
+    file_name = Path(dst).joinpath(dataset_name + '.tar.gz')
+    file_name = str(file_name)
 
-    if 'md5_hash' in dataset_dict:
-        md5_hash = dataset_dict['md5_hash']
+    if 'md5_hash' in dataset_meta:
+        md5_hash = dataset_meta['md5_hash']
     else:
         md5_hash = None
 
     # helpers from MNE-Python that do actual downloading
-    _fetch_file(url=dataset_dict['download_url'],
+    _fetch_file(url=dataset_meta['subset_url'],
                 file_name=file_name,
                 hash_=md5_hash)
 
