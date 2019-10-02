@@ -12,7 +12,7 @@ cbin-notmat:
   license_url: https://creativecommons.org/licenses/by/4.0/
   data_filename: sober.repo1.gy6or6.032212.tar.gz
   data_url: https://ndownloader.figshare.com/files/9537229
-
+  subset_url: https://ndownloader.figshare.com/files/17868536
 
 wav-koumura:
   repository_url: https://figshare.com/articles/BirdsongRecognition/3470165
@@ -20,6 +20,7 @@ wav-koumura:
   license_url: https://creativecommons.org/licenses/by/4.0/
   data_filename: Bird0.zip
   data_url: https://ndownloader.figshare.com/files/5463221
+  subset_url: https://ndownloader.figshare.com/files/17868539
 
 wav-textgrid:
   repository_url: https://figshare.com/articles/Data_used_in_PLoS_One_article_Complexity_Predictability_and_Time_Homogeneity_of_Syntax_in_the_Songs_of_Cassin_s_Vireo_Vireo_cassini_by_Hedley_2016_/3081814
@@ -29,3 +30,4 @@ wav-textgrid:
   audio_filename: WavFiles1.rar
   annot_url: https://ndownloader.figshare.com/files/4793170
   annot_filename: Textgrids.zip
+  subset_url: https://ndownloader.figshare.com/files/17868542
