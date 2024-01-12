@@ -1,0 +1,13 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pollyglot"
+authors = [{name = "David Nicholson", email = "nickledave@users.noreply.github.com"}]
+description = "Python tool to download acoustic communication datasets"
+readme = "README.md"
+dynamic = ["version", "description"]
+
+[project.urls]
+Home = "https://github.com/vocalpy/pollyglot"
