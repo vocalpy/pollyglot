@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "pollyglot"
 authors = [{name = "David Nicholson", email = "nickledave@users.noreply.github.com"}]
-description = "Python tool to download acoustic communication datasets"
+description = "Python library for working with bioacoustics and animal acoustic communication datasets"
 version = "0.1"
 readme = "README.md"
 dependencies = [
