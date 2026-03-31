@@ -10,4 +10,3 @@ def validate_root(root: PathLike) -> pathlib.Path:
             f"`root` not found or is not a directory: {root}"
         )
     return root
-
