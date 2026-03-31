@@ -12,3 +12,7 @@ readme = "README.md"
 
 [project.urls]
 Home = "https://github.com/vocalpy/pollyglot"
+
+
+[tool.flit.module]
+name = "glot"
