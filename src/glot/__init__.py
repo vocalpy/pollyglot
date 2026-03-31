@@ -2,7 +2,8 @@ from . import (
     constants,
     datasets,
     hash,
-    typing
+    typing,
+    validators
 )
 
 
@@ -11,4 +12,5 @@ __all__ = [
     "datasets",
     "hash",
     "typing",
+    "validators",
 ]
