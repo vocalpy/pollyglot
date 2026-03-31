@@ -1,4 +1,4 @@
-import pathlib.Path
+import pathlib
 
 from glot.typing import PathLike
 
