@@ -24,4 +24,4 @@ def _update_indexes_json(dataset_name: str, index_json_name: str):
         indexes_json = json.load(fp)
     indexes_json[dataset_name] = index_json_name
     with NAME_INDEX_MAP_PATH.open("w") as fp:
-        json.dump(indexes_json, indent=4)
+        json.dump(indexes_json, fp, indent=4)
