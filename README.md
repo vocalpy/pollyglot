@@ -5,11 +5,14 @@ Python tool to download acoustic communication datasets.
 
 ## usage
 
+```python
+import glot
+```
 
 ## Project information
 
 ### License
 Pollyglot (c) by David Nicholson, 2018-present.
 
-Code is shared under [BSD-3 License](./LICENSE-CODE).
+Code is shared under [BSD-3 License](./LICENSE).
 
